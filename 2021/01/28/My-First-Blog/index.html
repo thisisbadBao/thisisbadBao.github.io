@@ -406,31 +406,37 @@
 
 
 
+  <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'SvmxWhoNpMkSL5cU89i7TtDU-gzGzoHsz',
+      app_key: 'aOS4lbbq4MJsRS39VGaKTu4R',
+      placeholder: 'Just go go'
+    });
+</script>
+  </section>
 
 
 
 
 
-  <div id="giteement-ctn"></div>
-  
-    <link rel="stylesheet" href="/lib/default.css">
-    <script src="/lib/giteement.browser.js"></script>
-  
-  <script>
-  <!-- id: "Hello World" -->
-  var giteement = new Giteement({
-    id: '20210128194325',
-    owner: 'thisisbadBao',
-    repo: 'yilia-plus-comment',
-    backcall_uri: 'https://badbao.top',
-    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
-    oauth: {
-      client_id: 'a34cffaa0eb7914c7c2fc180f687d879a4851daa7a779ecd0551576c6f95ac09',
-      client_secret: 'e24c952a1e52483b2ca74eea74919739ff7ea2444b988b4e912a9997a0926391'
-    },
-  })
-  giteement.render('giteement-ctn')
-  </script>
 
 
 

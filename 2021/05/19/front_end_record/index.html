@@ -6,21 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/thisisbadBao">
-  <title>前端学习笔记 | baobao&#39;s blog</title>
+  <title>前端初体验 | baobao&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta property="og:type" content="article">
-<meta property="og:title" content="前端学习笔记">
+<meta property="og:title" content="前端初体验">
 <meta property="og:url" content="https://github.com/thisisbadBao/2021/05/19/front_end_record/index.html">
 <meta property="og:site_name" content="baobao&#39;s blog">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210519195354.jpeg">
-<meta property="og:image" content="https://github.com/Users/thisisbadbao/Desktop/iShot2021-05-27%2023.09.16.png">
-<meta property="og:image" content="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210528092957.png">
-<meta property="og:image" content="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210528093109.png">
+<meta property="og:image" content="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210813234143.png">
+<meta property="og:image" content="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210813234122.JPG">
 <meta property="article:published_time" content="2021-05-19T11:55:34.000Z">
-<meta property="article:modified_time" content="2021-05-28T01:31:31.100Z">
+<meta property="article:modified_time" content="2021-08-13T15:42:47.190Z">
 <meta property="article:author" content="thisisbadBao">
 <meta property="article:tag" content="Html&#x2F;Css&#x2F;Js">
 <meta property="article:tag" content="Vue">
@@ -204,7 +203,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      前端学习笔记
+      前端初体验
     </h1>
   
 
@@ -230,7 +229,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">541字</span>
+      <span class="post-count">498字</span>
     </span>
   </span>
 
@@ -255,7 +254,6 @@
 <a id="more"></a>
 
 <p>最近软工导论的大作业我们组计划要做一个网页聊天室，因此我（终于）正式开始学习前端了，我先是很快得把html和css基本概念过了一遍，js也快速入了个门，然后就开始入手vue，很显然，这种学习方式是不可取的（先把大作业做掉，因为ddl快到了啊喂）。  这个聊天室我们打算采用springboot+vue，但愿能做出来。</p>
-<p>这个帖子就当作前端的学习笔记吧，我会把平时看到的或者用到的一些很有用的技巧放在这里，以备以后不时之需。</p>
 <p>今天把聊天室的布局搞了，感觉grid布局真的好用，不过网页大小自适应我还是搞了好久，这里记一笔这个大小能自适应的布局</p>
 <ul>
 <li>html</li>
@@ -267,13 +265,13 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: sidebar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: content;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: header;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.footer</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: footer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">2</span>fr <span class="number">2</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">1</span>fr <span class="number">18</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">&quot;header header header&quot;</span></span><br><span class="line">    <span class="string">&quot;sidebar content content&quot;</span></span><br><span class="line">    <span class="string">&quot;footer  footer  footer&quot;</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#444</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">150%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span>,</span><br><span class="line"><span class="selector-class">.footer</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*以下为content布局*/</span></span><br><span class="line"><span class="selector-class">.messageBox</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: messageBox;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#42b983</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">10px</span> <span class="number">10px</span> <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.chatWrapper</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">9</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">1</span>fr <span class="number">9</span>fr <span class="number">2</span>fr;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">&quot;... .......... ...&quot;</span></span><br><span class="line">    <span class="string">&quot;... messageBox ...&quot;</span></span><br><span class="line">    <span class="string">&quot;... messageInputBox ...&quot;</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#505458</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#444</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <hr>
 <p>总算还是做完了，DDL确实是第一生产力。虽然说做的还不怎么样，好多之前预想的都没做好，但作为第一个完整的项目（还差没部署），在边学边做的过程中还是收获不少的。</p>
-<img src="/Users/thisisbadbao/Desktop/iShot2021-05-27 23.09.16.png" alt="iShot2021-05-27 23.09.16" style="zoom:35%;" />
+<img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210813234143.png" alt="login" style="zoom: 70%;" />
 
 
 
-<img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210528092957.png" alt="iShot2021-05-27 23.10.22" style="zoom:44%;" />
+<img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210813234122.JPG" alt="IMG_0531" style="zoom:53%;" />
 
-<p><img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210528093109.png" alt="iShot2021-05-27 23.12.23"></p>
+<p><a href="https://github.com/thisisbadBao/vue_bbchat">https://github.com/thisisbadBao/vue_bbchat</a></p>
 
     
 
@@ -582,15 +580,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Html/Css/Js</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color3">睡觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,15 +604,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">Html/Css/Js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">睡觉</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -441,7 +441,7 @@
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>定义宿主变量</span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">BEGIN</span> <span class="keyword">DECLARE</span> SECTION; <span class="type">char</span> SNO[<span class="number">7</span>];</span><br><span class="line"><span class="type">char</span> GIVENSNO[<span class="number">7</span>];</span><br><span class="line"><span class="type">char</span> CNO[<span class="number">6</span>];</span><br><span class="line"><span class="type">char</span> GIVENCNO[<span class="number">6</span>];</span><br><span class="line"><span class="type">float</span> GRADE;</span><br><span class="line">short GRADEI; <span class="comment">/*indicator of GRADE，为负数则表示GRADE为NULL*/</span></span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">END</span> <span class="keyword">DECLARE</span> SECTION;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>特殊的宿主变量<code>SQLCA</code>,通常用<code>SQLCA&gt;SQLCODE</code>来表示SQL执行结果</p>
+<li><p>特殊的宿主变量<code>SQLCA</code>,通常用<code>SQLCA.SQLCODE</code>来表示SQL执行结果</p>
 <blockquote>
 <p>&lt;0表示出错且未执行</p>
 <p>=0表示正常</p>
@@ -487,12 +487,12 @@
 <ul>
 <li>一个应用对应一个DBMS进程</li>
 </ul>
-<img src="/Users/thisisbadbao/Library/Application Support/typora-user-images/image-20211227164149553.png" alt="image-20211227164149553" style="zoom:50%;" />
+<img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20211228090732.png" alt="image-20211227164149553" style="zoom:50%;" />
 
 <ul>
-<li>一个应用对用一个 DBMS的一个线程</li>
+<li>一个应用对应一个 DBMS的一个线程</li>
 </ul>
-<img src="/Users/thisisbadbao/Library/Application Support/typora-user-images/image-20211227164230234.png" alt="image-20211227164230234" style="zoom:30%;" />
+<img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20211228090758.png" alt="image-20211227164230234" style="zoom:30%;" />
 
 </li>
 </ul>
@@ -880,7 +880,7 @@
 <li>主动数据库：能对数据库采取一些主动的动作。<ul>
 <li>数据库的主动依赖于规则<ul>
 <li>规则：ECA规则，E为事件、C为条件、A为动作。</li>
-<li>即当事件A发生，且条件C满足时，采取A动作</li>
+<li>即当事件E发生，且条件C满足时，采取A动作</li>
 </ul>
 </li>
 </ul>
@@ -987,12 +987,12 @@
 </li>
 </ul>
 </li>
-<li><p>4 NF 四范式 </p>
+<li><p>4NF 四范式 </p>
 <ul>
 <li>在满足三范式的前提下，消除多值依赖。</li>
 </ul>
 </li>
-<li><p>4NF 五范式 </p>
+<li><p>5NF 五范式 </p>
 <ul>
 <li><p>在满足四范式的前提下，消除连接依赖。</p>
 <pre><code>## 数据库设计方法

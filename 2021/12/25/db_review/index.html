@@ -118,7 +118,7 @@
 </div>
   <div class="content"><h1 id="Chapter-1-数据库系统引论"><a href="#Chapter-1-数据库系统引论" class="headerlink" title="Chapter 1 数据库系统引论"></a>Chapter 1 数据库系统引论</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>主要参考的是王能斌老师编写的《数据库系统教程》第二版上册，每个标题旁边是对应书上的页码。    </p>
 <p><del>可恶啊，这学期数据库没怎么听课，还有三天就期末考了，我能补回来吗？</del></p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="数据库基本概念-P2-5"><a href="#数据库基本概念-P2-5" class="headerlink" title="数据库基本概念 P2-5"></a>数据库基本概念 P2-5</h2><p>数据库：A very large, integrated collection of data.</p>
 <p>DBMS：A software package designed to store and manage databases.</p>
@@ -305,11 +305,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="查询语言"><a href="#查询语言" class="headerlink" title="查询语言"></a>查询语言</h2><h3 id="查询语句基本结构-P62-63"><a href="#查询语句基本结构-P62-63" class="headerlink" title="查询语句基本结构 P62-63"></a>查询语句基本结构 P62-63</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">DISTINCT</span>] target<span class="operator">-</span>list  <span class="operator">/</span><span class="operator">/</span><span class="keyword">DISTINCT</span>，消除重复元组</span><br><span class="line"><span class="keyword">FROM</span>   	relation<span class="operator">-</span>list   <span class="operator">/</span><span class="operator">/</span>关系列表</span><br><span class="line"><span class="keyword">WHERE</span>   qualification    <span class="operator">/</span><span class="operator">/</span>条件</span><br></pre></td></tr></table></figure>
+<h2 id="查询语言"><a href="#查询语言" class="headerlink" title="查询语言"></a>查询语言</h2><h3 id="查询语句基本结构-P62-63"><a href="#查询语句基本结构-P62-63" class="headerlink" title="查询语句基本结构 P62-63"></a>查询语句基本结构 P62-63</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token punctuation">[</span><span class="token keyword">DISTINCT</span><span class="token punctuation">]</span> target<span class="token operator">-</span>list  <span class="token comment">//DISTINCT，消除重复元组</span>
+<span class="token keyword">FROM</span>   	relation<span class="token operator">-</span>list   <span class="token comment">//关系列表</span>
+<span class="token keyword">WHERE</span>   qualification    <span class="token comment">//条件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p><strong>执行顺序：</strong> FROM   WHERE   GROUP BY   HAVING   SELECT   ORDER BY<em>（重要！）</em></p>
 <h3 id="简单查询语句-P63-64"><a href="#简单查询语句-P63-64" class="headerlink" title="简单查询语句 P63-64"></a>简单查询语句 P63-64</h3><ul>
 <li><p>后面的例子需要用到的表</p>
-<img src="/Users/thisisbadbao/Library/Application Support/typora-user-images/image-20211226170440441.png" alt="image-20211226170440441" style="zoom:35%;" />
+<img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20211231172433.png" alt="image-20211226170440441" style="zoom:35%;" />
 </li>
 <li><p>范围变量（Range Variables）<code>AS</code></p>
 <ul>
@@ -317,36 +320,131 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>正常写法</span><br><span class="line"><span class="keyword">SELECT</span> sname</span><br><span class="line"><span class="keyword">FROM</span> Sailors, Reserves</span><br><span class="line"><span class="keyword">WHERE</span> Sailors.sid<span class="operator">=</span>Reserves.sid <span class="keyword">AND</span> bid<span class="operator">=</span><span class="number">103</span></span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>取别名</span><br><span class="line"><span class="keyword">SELECT</span> S.sname</span><br><span class="line"><span class="keyword">FROM</span> Sailors S, Reserves R</span><br><span class="line"><span class="keyword">WHERE</span> S.sid<span class="operator">=</span>R.sid <span class="keyword">AND</span> bid<span class="operator">=</span><span class="number">103</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//正常写法</span>
+<span class="token keyword">SELECT</span> sname
+<span class="token keyword">FROM</span> Sailors<span class="token punctuation">,</span> Reserves
+<span class="token keyword">WHERE</span> Sailors<span class="token punctuation">.</span>sid<span class="token operator">=</span>Reserves<span class="token punctuation">.</span>sid <span class="token operator">AND</span> bid<span class="token operator">=</span><span class="token number">103</span>
+
+<span class="token comment">//取别名</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sname
+<span class="token keyword">FROM</span> Sailors S<span class="token punctuation">,</span> Reserves R
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R<span class="token punctuation">.</span>sid <span class="token operator">AND</span> bid<span class="token operator">=</span><span class="token number">103</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
 <li>使用表达式 <code>=</code> <code>AS</code> <code>LIKE</code></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> S.age, age1<span class="operator">=</span>S.age<span class="number">-5</span>, <span class="number">2</span><span class="operator">*</span>S.age <span class="keyword">AS</span> age2  <span class="operator">/</span><span class="operator">/</span><span class="keyword">AS</span>和’<span class="operator">=</span>‘一样，</span><br><span class="line"><span class="keyword">FROM</span> Sailors S  </span><br><span class="line"><span class="keyword">WHERE</span> S.sname <span class="keyword">LIKE</span> ‘B_<span class="operator">%</span>B’ <span class="operator">/</span><span class="operator">/</span><span class="string">&#x27;_&#x27;</span>表示任意一个字符，<span class="string">&#x27;%&#x27;</span>表示零个及以上个任意字符</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>age<span class="token punctuation">,</span> age1<span class="token operator">=</span>S<span class="token punctuation">.</span>age<span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span>S<span class="token punctuation">.</span>age <span class="token keyword">AS</span> age2  <span class="token comment">//AS和’=‘一样，</span>
+<span class="token keyword">FROM</span> Sailors S  
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sname <span class="token operator">LIKE</span> ‘B_<span class="token operator">%</span>B’ <span class="token comment">//'_'表示任意一个字符，'%'表示零个及以上个任意字符</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="基于集合操作的查询语句-P69"><a href="#基于集合操作的查询语句-P69" class="headerlink" title="基于集合操作的查询语句 P69"></a>基于集合操作的查询语句 P69</h3><ul>
 <li><p>用集合的并集和交集</p>
 <ul>
 <li><code>UNION</code>  相当于<code>OR</code></li>
 <li><code>UNION ALL</code> 表示将所有元组并起来，包括那些重复项，<code>UNION</code>则会去除重复项</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>找出预定过红船或绿船的水手</span><br><span class="line"><span class="keyword">SELECT</span> S.sid</span><br><span class="line"><span class="keyword">FROM</span> Sailors S, Boats B, Reserves R </span><br><span class="line"><span class="keyword">WHERE</span> S.sid<span class="operator">=</span>R.sid <span class="keyword">AND</span> R.bid<span class="operator">=</span>B.bid <span class="keyword">AND</span> B.color<span class="operator">=</span>‘red’</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> S.sid</span><br><span class="line"><span class="keyword">FROM</span> Sailors S, Boats B, Reserves R </span><br><span class="line"><span class="keyword">WHERE</span> S.sid<span class="operator">=</span>R.sid <span class="keyword">AND</span> R.bid<span class="operator">=</span>B.bid <span class="keyword">AND</span> B.color<span class="operator">=</span>‘green’</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> S.sid</span><br><span class="line"><span class="keyword">FROM</span> Sailors S,Boats B,Reserves R </span><br><span class="line"><span class="keyword">WHERE</span> S.sid<span class="operator">=</span>R.sid <span class="keyword">AND</span> R.bid<span class="operator">=</span>B.bid <span class="keyword">AND</span> (B.color<span class="operator">=</span>‘red’ <span class="keyword">OR</span> B.color<span class="operator">=</span>‘green’)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//找出预定过红船或绿船的水手</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sid
+<span class="token keyword">FROM</span> Sailors S<span class="token punctuation">,</span> Boats B<span class="token punctuation">,</span> Reserves R 
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R<span class="token punctuation">.</span>sid <span class="token operator">AND</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span>B<span class="token punctuation">.</span>bid <span class="token operator">AND</span> B<span class="token punctuation">.</span>color<span class="token operator">=</span>‘red’
+<span class="token keyword">UNION</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sid
+<span class="token keyword">FROM</span> Sailors S<span class="token punctuation">,</span> Boats B<span class="token punctuation">,</span> Reserves R 
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R<span class="token punctuation">.</span>sid <span class="token operator">AND</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span>B<span class="token punctuation">.</span>bid <span class="token operator">AND</span> B<span class="token punctuation">.</span>color<span class="token operator">=</span>‘green’
+
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sid
+<span class="token keyword">FROM</span> Sailors S<span class="token punctuation">,</span>Boats B<span class="token punctuation">,</span>Reserves R 
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R<span class="token punctuation">.</span>sid <span class="token operator">AND</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span>B<span class="token punctuation">.</span>bid <span class="token operator">AND</span> <span class="token punctuation">(</span>B<span class="token punctuation">.</span>color<span class="token operator">=</span>‘red’ <span class="token operator">OR</span> B<span class="token punctuation">.</span>color<span class="token operator">=</span>‘green’<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
 <li><code>INTERSECT</code> 相当于 <code>AND</code></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>找出同时预定红船和绿船的水手</span><br><span class="line"><span class="keyword">SELECT</span> S.sid</span><br><span class="line"><span class="keyword">FROM</span> Sailors S, Boats B, Reserves R </span><br><span class="line"><span class="keyword">WHERE</span> S.sid<span class="operator">=</span>R.sid <span class="keyword">AND</span> R.bid<span class="operator">=</span>B.bid <span class="keyword">AND</span> B.color<span class="operator">=</span>‘red’</span><br><span class="line"><span class="keyword">INTERSECT</span></span><br><span class="line"><span class="keyword">SELECT</span> S.sid</span><br><span class="line"><span class="keyword">FROM</span> Sailors S, Boats B, Reserves R </span><br><span class="line"><span class="keyword">WHERE</span> S.sid<span class="operator">=</span>R.sid <span class="keyword">AND</span> R.bid<span class="operator">=</span>B.bidAND B.color<span class="operator">=</span>‘green’</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> S.sid</span><br><span class="line"><span class="keyword">FROM</span> Sailors S, Boats B1, Reserves R1, Boats B2, Reserves R2</span><br><span class="line"><span class="keyword">WHERE</span> S.sid<span class="operator">=</span>R1.sid <span class="keyword">AND</span> R1.bid<span class="operator">=</span>B1.bid <span class="keyword">AND</span> S.sid<span class="operator">=</span>R2.sid <span class="keyword">AND</span> R2.bid<span class="operator">=</span>B2.bid <span class="keyword">AND</span> (B1.color<span class="operator">=</span>‘red’ <span class="keyword">AND</span></span><br><span class="line">B2.color<span class="operator">=</span>‘green’)</span><br></pre></td></tr></table></figure>
-<h3 id="基于嵌套子查询的查询语句-P66-67"><a href="#基于嵌套子查询的查询语句-P66-67" class="headerlink" title="基于嵌套子查询的查询语句 P66-67"></a>基于嵌套子查询的查询语句 P66-67</h3></li>
-<li><p>Nested Queries</p>
-<ul>
-<li><p>就是在<code>FROM</code> <code>WHERE</code> <code>SELECT</code> 中也可以用sql查询  <code>IN</code> <code>NOT IN</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>查找预定过<span class="number">103</span>号船的水手，如果用`<span class="keyword">NOT</span> <span class="keyword">IN</span>`就表示没预定过<span class="number">103</span></span><br><span class="line"><span class="keyword">SELECT</span> S.sname</span><br><span class="line"><span class="keyword">FROM</span> SailorsS</span><br><span class="line"><span class="keyword">WHERE</span> S.sid <span class="keyword">IN</span> (<span class="keyword">SELECT</span> R.sid    <span class="operator">/</span><span class="operator">/</span>意思是这个值在选出来的表中</span><br><span class="line">								<span class="keyword">FROM</span> ReservesR</span><br><span class="line">  							<span class="keyword">WHERE</span> R.bid<span class="operator">=</span><span class="number">103</span>)</span><br><span class="line">  							</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> `(<span class="keyword">NOT</span>)<span class="keyword">IN</span>` 也可以用 `(<span class="keyword">NOT</span>)<span class="keyword">EXISTS</span>`代替，写法略有不同</span><br><span class="line"><span class="keyword">SELECT</span> S.sname</span><br><span class="line"><span class="keyword">FROM</span> Sailors S</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="operator">*</span>     <span class="operator">/</span><span class="operator">/</span>意思应该是存在这样的元组</span><br><span class="line">							<span class="keyword">FROM</span> ReservesR</span><br><span class="line">   						<span class="keyword">WHERE</span> R.bid<span class="operator">=</span><span class="number">103</span> <span class="keyword">AND</span> S.sid<span class="operator">=</span>R.sid)</span><br><span class="line">   						</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>如果要查找只预定过一次<span class="number">103</span>这艘船的水手名字呢？</span><br><span class="line"><span class="keyword">SELECT</span> S.sname</span><br><span class="line"><span class="keyword">FROM</span> Sailors S</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="operator">*</span>     </span><br><span class="line">							<span class="keyword">FROM</span> Reserves R</span><br><span class="line">   						<span class="keyword">WHERE</span> R.bid<span class="operator">=</span><span class="number">103</span> <span class="keyword">AND</span> S.sid<span class="operator">=</span>R.sid)</span><br><span class="line">   		<span class="keyword">NOT</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">                 	<span class="keyword">FROM</span> Reserves R1, Reserves R2) 		</span><br><span class="line">                  <span class="keyword">WHERE</span> ...</span><br><span class="line">                  		<span class="keyword">AND</span> R1.day <span class="operator">!=</span> R2.day </span><br><span class="line">   						</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>查找只被一个水手预定过的船的bid</span><br><span class="line"><span class="keyword">SELECT</span> bid </span><br><span class="line"><span class="keyword">FROM</span> Reserves R1</span><br><span class="line"><span class="keyword">WHERE</span> bid <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> bid          <span class="operator">/</span><span class="operator">/</span>被其他水手订过的船的bid</span><br><span class="line">									<span class="keyword">FROM</span> Reserves R2 </span><br><span class="line">                  <span class="keyword">WHERE</span> R2.sid ¬<span class="operator">=</span> R1.sid)</span><br></pre></td></tr></table></figure></li>
+</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//找出同时预定红船和绿船的水手</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sid
+<span class="token keyword">FROM</span> Sailors S<span class="token punctuation">,</span> Boats B<span class="token punctuation">,</span> Reserves R 
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R<span class="token punctuation">.</span>sid <span class="token operator">AND</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span>B<span class="token punctuation">.</span>bid <span class="token operator">AND</span> B<span class="token punctuation">.</span>color<span class="token operator">=</span>‘red’
+<span class="token keyword">INTERSECT</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sid
+<span class="token keyword">FROM</span> Sailors S<span class="token punctuation">,</span> Boats B<span class="token punctuation">,</span> Reserves R 
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R<span class="token punctuation">.</span>sid <span class="token operator">AND</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span>B<span class="token punctuation">.</span>bidAND B<span class="token punctuation">.</span>color<span class="token operator">=</span>‘green’
+
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sid
+<span class="token keyword">FROM</span> Sailors S<span class="token punctuation">,</span> Boats B1<span class="token punctuation">,</span> Reserves R1<span class="token punctuation">,</span> Boats B2<span class="token punctuation">,</span> Reserves R2
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R1<span class="token punctuation">.</span>sid <span class="token operator">AND</span> R1<span class="token punctuation">.</span>bid<span class="token operator">=</span>B1<span class="token punctuation">.</span>bid <span class="token operator">AND</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R2<span class="token punctuation">.</span>sid <span class="token operator">AND</span> R2<span class="token punctuation">.</span>bid<span class="token operator">=</span>B2<span class="token punctuation">.</span>bid <span class="token operator">AND</span> <span class="token punctuation">(</span>B1<span class="token punctuation">.</span>color<span class="token operator">=</span>‘red’ <span class="token operator">AND</span>
+B2<span class="token punctuation">.</span>color<span class="token operator">=</span>‘green’<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="基于嵌套子查询的查询语句-P66-67"><a href="#基于嵌套子查询的查询语句-P66-67" class="headerlink" title="基于嵌套子查询的查询语句 P66-67"></a>基于嵌套子查询的查询语句 P66-67</h3><ul>
+<li>Nested Queries<ul>
+<li>就是在<code>FROM</code> <code>WHERE</code> <code>SELECT</code> 中也可以用sql查询  <code>IN</code> <code>NOT IN</code></li>
 </ul>
 </li>
-<li><p><code>op ANY</code>  <code>op ALL</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>找到一个水手比至少一个叫Horatio的水手评分高的（只要比一个高就行）</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> SailorsS</span><br><span class="line"><span class="keyword">WHERE</span> S.rating<span class="operator">&gt;</span><span class="keyword">ANY</span> (<span class="keyword">SELECT</span> S2.rating</span><br><span class="line">										<span class="keyword">FROM</span> SailorsS2</span><br><span class="line">										<span class="keyword">WHERE</span> S2.sname<span class="operator">=</span>‘Horatio’)</span><br></pre></td></tr></table></figure>
-<h3 id="除法与聚集函数计算-P66"><a href="#除法与聚集函数计算-P66" class="headerlink" title="除法与聚集函数计算 P66"></a>除法与聚集函数计算 P66</h3></li>
-<li><p>Division</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>查找那些预定过所有船的水手</span><br><span class="line"><span class="keyword">SELECT</span> S.sname <span class="keyword">FROM</span> Sailors S </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>         <span class="operator">/</span><span class="operator">/</span>不存在没有预定的船</span><br><span class="line">        ((<span class="keyword">SELECT</span> B.bid <span class="keyword">FROM</span> Boats B)</span><br><span class="line">          <span class="keyword">EXCEPT</span>          <span class="operator">/</span><span class="operator">/</span>排除那些已经有人预定过的船的bid</span><br><span class="line">         (<span class="keyword">SELECT</span> R.bid</span><br><span class="line">          <span class="keyword">FROM</span> Reserves R </span><br><span class="line">          <span class="keyword">WHERE</span> R.sid<span class="operator">=</span>S.sid))</span><br></pre></td></tr></table></figure></li>
-<li><p>Aggregate Operators</p>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//查找预定过103号船的水手，如果用`NOT IN`就表示没预定过103</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sname
+<span class="token keyword">FROM</span> SailorsS
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sid <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> R<span class="token punctuation">.</span>sid    <span class="token comment">//意思是这个值在选出来的表中</span>
+								<span class="token keyword">FROM</span> ReservesR
+  							<span class="token keyword">WHERE</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span><span class="token number">103</span><span class="token punctuation">)</span>
+  							
+<span class="token comment">// `(NOT)IN` 也可以用 `(NOT)EXISTS`代替，写法略有不同</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sname
+<span class="token keyword">FROM</span> Sailors S
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token operator">*</span>     <span class="token comment">//意思应该是存在这样的元组</span>
+							<span class="token keyword">FROM</span> ReservesR
+   						<span class="token keyword">WHERE</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span><span class="token number">103</span> <span class="token operator">AND</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R<span class="token punctuation">.</span>sid<span class="token punctuation">)</span>
+   						
+<span class="token comment">//如果要查找只预定过一次103这艘船的水手名字呢？</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sname
+<span class="token keyword">FROM</span> Sailors S
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token operator">*</span>     
+							<span class="token keyword">FROM</span> Reserves R
+   						<span class="token keyword">WHERE</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span><span class="token number">103</span> <span class="token operator">AND</span> S<span class="token punctuation">.</span>sid<span class="token operator">=</span>R<span class="token punctuation">.</span>sid<span class="token punctuation">)</span>
+   		<span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+                 	<span class="token keyword">FROM</span> Reserves R1<span class="token punctuation">,</span> Reserves R2<span class="token punctuation">)</span> 		
+                  <span class="token keyword">WHERE</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+                  		<span class="token operator">AND</span> R1<span class="token punctuation">.</span><span class="token keyword">day</span> <span class="token operator">!=</span> R2<span class="token punctuation">.</span><span class="token keyword">day</span> 
+   						
+
+<span class="token comment">//查找只被一个水手预定过的船的bid</span>
+<span class="token keyword">SELECT</span> bid 
+<span class="token keyword">FROM</span> Reserves R1
+<span class="token keyword">WHERE</span> bid <span class="token operator">NOT</span> <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> bid          <span class="token comment">//被其他水手订过的船的bid</span>
+									<span class="token keyword">FROM</span> Reserves R2 
+                  <span class="token keyword">WHERE</span> R2<span class="token punctuation">.</span>sid ¬<span class="token operator">=</span> R1<span class="token punctuation">.</span>sid<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <ul>
+<li><code>op ANY</code>  <code>op ALL</code></li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//找到一个水手比至少一个叫Horatio的水手评分高的（只要比一个高就行）</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> SailorsS
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>rating<span class="token operator">></span><span class="token keyword">ANY</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> S2<span class="token punctuation">.</span>rating
+										<span class="token keyword">FROM</span> SailorsS2
+										<span class="token keyword">WHERE</span> S2<span class="token punctuation">.</span>sname<span class="token operator">=</span>‘Horatio’<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="除法与聚集函数计算-P66"><a href="#除法与聚集函数计算-P66" class="headerlink" title="除法与聚集函数计算 P66"></a>除法与聚集函数计算 P66</h3><ul>
+<li>Division</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//查找那些预定过所有船的水手</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sname <span class="token keyword">FROM</span> Sailors S 
+<span class="token keyword">WHERE</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span>         <span class="token comment">//不存在没有预定的船</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> B<span class="token punctuation">.</span>bid <span class="token keyword">FROM</span> Boats B<span class="token punctuation">)</span>
+          <span class="token keyword">EXCEPT</span>          <span class="token comment">//排除那些已经有人预定过的船的bid</span>
+         <span class="token punctuation">(</span><span class="token keyword">SELECT</span> R<span class="token punctuation">.</span>bid
+          <span class="token keyword">FROM</span> Reserves R 
+          <span class="token keyword">WHERE</span> R<span class="token punctuation">.</span>sid<span class="token operator">=</span>S<span class="token punctuation">.</span>sid<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<ul>
+<li>Aggregate Operators<ul>
 <li>COUNTS(*)：统计找到的元组总数</li>
 <li>COUNT([DISTINCT] A)：返回不重复的属性A的值有多少个</li>
 <li>SUM([DISTINCT] A)：返回不重复的属性A的值总和</li>
@@ -354,8 +452,31 @@
 <li>MAX(A)：属性A所有值中的最大值</li>
 <li>MIN(A)：属性A所有值中的最小值</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span> (<span class="operator">*</span>)   <span class="operator">/</span><span class="operator">/</span>所有的元组</span><br><span class="line"><span class="keyword">FROM</span> SailorsS</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span> (S.age)   <span class="operator">/</span><span class="operator">/</span>评分为<span class="number">10</span>的水手平均年龄</span><br><span class="line"><span class="keyword">FROM</span> SailorsS</span><br><span class="line"><span class="keyword">WHERE</span> S.rating<span class="operator">=</span><span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span> (<span class="keyword">DISTINCT</span> S.rating)   <span class="operator">/</span><span class="operator">/</span>叫Bob的有多少种评分</span><br><span class="line"><span class="keyword">FROM</span> SailorsS</span><br><span class="line"><span class="keyword">WHERE</span> S.sname<span class="operator">=</span>‘Bob’</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span> (<span class="keyword">DISTINCT</span> S.age)   <span class="operator">/</span><span class="operator">/</span>评分为<span class="number">10</span>的有几种年龄</span><br><span class="line"><span class="keyword">FROM</span> SailorsS </span><br><span class="line"><span class="keyword">WHERE</span> S.rating<span class="operator">=</span><span class="number">10</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> S.sname        <span class="operator">/</span><span class="operator">/</span>评分最高的水手名字</span><br><span class="line"><span class="keyword">FROM</span> SailorsS</span><br><span class="line"><span class="keyword">WHERE</span> S.rating<span class="operator">=</span> (<span class="keyword">SELECT</span> <span class="built_in">MAX</span>(S2.rating)</span><br><span class="line">									<span class="keyword">FROM</span> SailorsS2)</span><br></pre></td></tr></table></figure>
-<h3 id="分组聚集函数计算-P68-69"><a href="#分组聚集函数计算-P68-69" class="headerlink" title="分组聚集函数计算 P68-69"></a>分组聚集函数计算 P68-69</h3></li>
+</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">COUNT</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>   <span class="token comment">//所有的元组</span>
+<span class="token keyword">FROM</span> SailorsS
+
+<span class="token keyword">SELECT</span> <span class="token function">AVG</span> <span class="token punctuation">(</span>S<span class="token punctuation">.</span>age<span class="token punctuation">)</span>   <span class="token comment">//评分为10的水手平均年龄</span>
+<span class="token keyword">FROM</span> SailorsS
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>rating<span class="token operator">=</span><span class="token number">10</span>
+
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span> <span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> S<span class="token punctuation">.</span>rating<span class="token punctuation">)</span>   <span class="token comment">//叫Bob的有多少种评分</span>
+<span class="token keyword">FROM</span> SailorsS
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>sname<span class="token operator">=</span>‘Bob’
+
+<span class="token keyword">SELECT</span> <span class="token function">AVG</span> <span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> S<span class="token punctuation">.</span>age<span class="token punctuation">)</span>   <span class="token comment">//评分为10的有几种年龄</span>
+<span class="token keyword">FROM</span> SailorsS 
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>rating<span class="token operator">=</span><span class="token number">10</span> 
+
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sname        <span class="token comment">//评分最高的水手名字</span>
+<span class="token keyword">FROM</span> SailorsS
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>rating<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>S2<span class="token punctuation">.</span>rating<span class="token punctuation">)</span>
+									<span class="token keyword">FROM</span> SailorsS2<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="分组聚集函数计算-P68-69"><a href="#分组聚集函数计算-P68-69" class="headerlink" title="分组聚集函数计算 P68-69"></a>分组聚集函数计算 P68-69</h3><ul>
 <li><p>为什么分组</p>
 <ul>
 <li>例子：要找到每种评分中最年轻的水手（不知道有几种评分）</li>
@@ -365,69 +486,186 @@
 <ul>
 <li>按列的值分组，一样的分在一组</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">DISTINCT</span>] target<span class="operator">-</span>list </span><br><span class="line"><span class="keyword">FROM</span> relation<span class="operator">-</span>list</span><br><span class="line"><span class="keyword">WHERE</span> qualification</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">grouping</span><span class="operator">-</span>list</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">group</span><span class="operator">-</span>qualification  <span class="operator">/</span><span class="operator">/</span>属性必须是<span class="keyword">grouping</span><span class="operator">-</span>list的子集，不然语法报错</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token punctuation">[</span><span class="token keyword">DISTINCT</span><span class="token punctuation">]</span> target<span class="token operator">-</span>list 
+<span class="token keyword">FROM</span> relation<span class="token operator">-</span>list
+<span class="token keyword">WHERE</span> qualification
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> grouping<span class="token operator">-</span>list
+<span class="token keyword">HAVING</span> <span class="token keyword">group</span><span class="token operator">-</span>qualification  <span class="token comment">//属性必须是grouping-list的子集，不然语法报错</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <ul>
-<li><p>例子：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>找到年龄大于<span class="number">18</span>的最年轻水手的年纪，并且这个水手的评分必须至少还有一人和他一样</span><br><span class="line"><span class="keyword">SELECT</span> S.rating, <span class="built_in">MIN</span> (S.age) <span class="keyword">AS</span> minage  <span class="operator">/</span><span class="operator">/</span><span class="keyword">SELECT</span>最后执行</span><br><span class="line"><span class="keyword">FROM</span> SailorsS </span><br><span class="line"><span class="keyword">WHERE</span> S.age <span class="operator">&gt;=</span> <span class="number">18</span> </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> S.rating </span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">COUNT</span> (<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">1</span>  <span class="operator">/</span><span class="operator">/</span><span class="keyword">HAVING</span> <span class="built_in">COUNT</span> (<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="keyword">EVERY</span> (S.age <span class="operator">&lt;=</span><span class="number">60</span>)表示组内水手必须满足所有人年龄小于<span class="number">60</span></span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>找到每艘红船的预定数量</span><br><span class="line"><span class="keyword">SELECT</span> B.bid, <span class="built_in">COUNT</span> (<span class="operator">*</span>) <span class="keyword">AS</span> scount  <span class="operator">/</span><span class="operator">/</span><span class="number">3.</span> 再统计每组的数量</span><br><span class="line"><span class="keyword">FROM</span> Boats B,Reserves R</span><br><span class="line"><span class="keyword">WHERE</span> R.bid<span class="operator">=</span>B.bid <span class="keyword">AND</span> B.color<span class="operator">=</span>‘red’  <span class="operator">/</span><span class="operator">/</span><span class="number">1.</span> 先找到红船</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> B.bid  <span class="operator">/</span><span class="operator">/</span><span class="number">2.</span>然后分组</span><br></pre></td></tr></table></figure></li>
-<li><p>聚集函数不能嵌套使用</p>
+<li>例子：</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//找到年龄大于18的最年轻水手的年纪，并且这个水手的评分必须至少还有一人和他一样</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>rating<span class="token punctuation">,</span> <span class="token function">MIN</span> <span class="token punctuation">(</span>S<span class="token punctuation">.</span>age<span class="token punctuation">)</span> <span class="token keyword">AS</span> minage  <span class="token comment">//SELECT最后执行</span>
+<span class="token keyword">FROM</span> SailorsS 
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>age <span class="token operator">>=</span> <span class="token number">18</span> 
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> S<span class="token punctuation">.</span>rating 
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span>  <span class="token comment">//HAVING COUNT (*) > 1 AND EVERY (S.age &lt;=60)表示组内水手必须满足所有人年龄小于60</span>
+
+<span class="token comment">//找到每艘红船的预定数量</span>
+<span class="token keyword">SELECT</span> B<span class="token punctuation">.</span>bid<span class="token punctuation">,</span> <span class="token function">COUNT</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> scount  <span class="token comment">//3. 再统计每组的数量</span>
+<span class="token keyword">FROM</span> Boats B<span class="token punctuation">,</span>Reserves R
+<span class="token keyword">WHERE</span> R<span class="token punctuation">.</span>bid<span class="token operator">=</span>B<span class="token punctuation">.</span>bid <span class="token operator">AND</span> B<span class="token punctuation">.</span>color<span class="token operator">=</span>‘red’  <span class="token comment">//1. 先找到红船</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> B<span class="token punctuation">.</span>bid  <span class="token comment">//2.然后分组</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <ul>
-<li><p>例子</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>找到平均年龄最小的评分</span><br><span class="line"><span class="keyword">SELECT</span> S.rating</span><br><span class="line"><span class="keyword">FROM</span> Sailors S</span><br><span class="line"><span class="keyword">WHERE</span> S.age <span class="operator">=</span> (<span class="keyword">SELECT</span> <span class="built_in">MIN</span> (<span class="built_in">AVG</span> (S2.age))   <span class="operator">/</span><span class="operator">/</span>错误！！！</span><br><span class="line"><span class="keyword">FROM</span> Sailors S2)</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>改正</span><br><span class="line"><span class="keyword">SELECT</span> Temp.rating</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> S.rating, <span class="built_in">AVG</span> (S.age) <span class="keyword">AS</span> avgage  <span class="operator">/</span><span class="operator">/</span><span class="number">2.</span>再取每个组内的平均值</span><br><span class="line">			<span class="keyword">FROM</span> SailorsS</span><br><span class="line">			<span class="keyword">GROUP</span> <span class="keyword">BY</span> S.rating) <span class="keyword">AS</span> Temp    <span class="operator">/</span><span class="operator">/</span><span class="number">1.</span>先按评分分组</span><br><span class="line"><span class="keyword">WHERE</span> Temp.avgage <span class="operator">=</span> (<span class="keyword">SELECT</span> <span class="built_in">MIN</span> (Temp.avgage)  <span class="operator">/</span><span class="operator">/</span><span class="number">3.</span>取平均值值最小的</span><br><span class="line">										<span class="keyword">FROM</span> Temp)</span><br></pre></td></tr></table></figure>
+<li>聚集函数不能嵌套使用<ul>
+<li>例子</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//找到平均年龄最小的评分</span>
+<span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>rating
+<span class="token keyword">FROM</span> Sailors S
+<span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">MIN</span> <span class="token punctuation">(</span><span class="token function">AVG</span> <span class="token punctuation">(</span>S2<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment">//错误！！！</span>
+<span class="token keyword">FROM</span> Sailors S2<span class="token punctuation">)</span>
+
+<span class="token comment">//改正</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">Temp</span><span class="token punctuation">.</span>rating
+<span class="token keyword">FROM</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>rating<span class="token punctuation">,</span> <span class="token function">AVG</span> <span class="token punctuation">(</span>S<span class="token punctuation">.</span>age<span class="token punctuation">)</span> <span class="token keyword">AS</span> avgage  <span class="token comment">//2.再取每个组内的平均值</span>
+			<span class="token keyword">FROM</span> SailorsS
+			<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> S<span class="token punctuation">.</span>rating<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token keyword">Temp</span>    <span class="token comment">//1.先按评分分组</span>
+<span class="token keyword">WHERE</span> <span class="token keyword">Temp</span><span class="token punctuation">.</span>avgage <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">MIN</span> <span class="token punctuation">(</span><span class="token keyword">Temp</span><span class="token punctuation">.</span>avgage<span class="token punctuation">)</span>  <span class="token comment">//3.取平均值值最小的</span>
+										<span class="token keyword">FROM</span> <span class="token keyword">Temp</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <p><del>fuck 今天是一点不想复习啊</del> </p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 <h3 id="CAST与CASE表达式"><a href="#CAST与CASE表达式" class="headerlink" title="CAST与CASE表达式"></a>CAST与CASE表达式</h3><ul>
 <li><p>CAST</p>
 <blockquote>
 <p>强制数据类型转换</p>
 </blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name, school, <span class="built_in">CAST</span>(<span class="keyword">NULL</span> <span class="keyword">AS</span> <span class="type">Varchar</span>(<span class="number">20</span>))</span><br><span class="line"><span class="keyword">FROM</span> Students</span><br></pre></td></tr></table></figure></li>
+</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> school<span class="token punctuation">,</span> CAST<span class="token punctuation">(</span><span class="token boolean">NULL</span> <span class="token keyword">AS</span> <span class="token keyword">Varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> Students<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<ul>
 <li><p>CASE</p>
 <blockquote>
 <p>跟在SELECT后面</p>
 </blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>Officers (name, status, rank, title)</span><br><span class="line"><span class="keyword">SELECT</span> name, <span class="keyword">CASE</span> status</span><br><span class="line">              <span class="keyword">WHEN</span> <span class="number">1</span> <span class="keyword">THEN</span> ‘Active Duty’ </span><br><span class="line">              <span class="keyword">WHEN</span> <span class="number">2</span> <span class="keyword">THEN</span> ‘Reserve’</span><br><span class="line">              <span class="keyword">WHEN</span> <span class="number">3</span> <span class="keyword">THEN</span> ‘Special Assignment’ </span><br><span class="line">              <span class="keyword">WHEN</span> <span class="number">4</span> <span class="keyword">THEN</span> ‘Retired’</span><br><span class="line">              <span class="keyword">ELSE</span> ‘<span class="literal">Unknown</span>’</span><br><span class="line">              <span class="keyword">END</span> </span><br><span class="line">            <span class="keyword">AS</span> status </span><br><span class="line"><span class="keyword">FROM</span> Officers </span><br></pre></td></tr></table></figure>
-<h3 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h3></li>
+</li>
 </ul>
-<blockquote>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//Officers (name, status, rank, title)</span>
+<span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> <span class="token keyword">CASE</span> <span class="token keyword">status</span>
+              <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> ‘Active Duty’ 
+              <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> ‘Reserve’
+              <span class="token keyword">WHEN</span> <span class="token number">3</span> <span class="token keyword">THEN</span> ‘Special Assignment’ 
+              <span class="token keyword">WHEN</span> <span class="token number">4</span> <span class="token keyword">THEN</span> ‘Retired’
+              <span class="token keyword">ELSE</span> ‘Unknown’
+              <span class="token keyword">END</span> 
+            <span class="token keyword">AS</span> <span class="token keyword">status</span> 
+<span class="token keyword">FROM</span> Officers <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h3><blockquote>
 <p>dept(deptno,  deptname, location)</p>
 <p>emp(deptno, salary, bonus)</p>
 </blockquote>
 <ul>
 <li>就是这个子查询只会返回一个元组</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>找到那些平均奖金高于平均工资的部门</span><br><span class="line"><span class="keyword">SELECT</span> d.deptname, d.location </span><br><span class="line"><span class="keyword">FROM</span> dept <span class="keyword">AS</span> d</span><br><span class="line"><span class="keyword">WHERE</span> (<span class="keyword">SELECT</span> <span class="built_in">avg</span>(bonus)</span><br><span class="line">			FORM emp</span><br><span class="line">			<span class="keyword">WHERE</span> deptno<span class="operator">=</span>d.deptno) </span><br><span class="line">			<span class="operator">&gt;</span> (<span class="keyword">SELECT</span> <span class="built_in">avg</span>(salary)</span><br><span class="line">				FORM emp</span><br><span class="line">				<span class="keyword">WHERE</span> deptno<span class="operator">=</span>d.deptno)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//找到那些平均奖金高于平均工资的部门</span>
+<span class="token keyword">SELECT</span> d<span class="token punctuation">.</span>deptname<span class="token punctuation">,</span> d<span class="token punctuation">.</span>location 
+<span class="token keyword">FROM</span> dept <span class="token keyword">AS</span> d
+<span class="token keyword">WHERE</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">avg</span><span class="token punctuation">(</span>bonus<span class="token punctuation">)</span>
+			FORM emp
+			<span class="token keyword">WHERE</span> deptno<span class="token operator">=</span>d<span class="token punctuation">.</span>deptno<span class="token punctuation">)</span> 
+			<span class="token operator">></span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">avg</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+				FORM emp
+				<span class="token keyword">WHERE</span> deptno<span class="token operator">=</span>d<span class="token punctuation">.</span>deptno<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="表表达式与公共表表达式"><a href="#表表达式与公共表表达式" class="headerlink" title="表表达式与公共表表达式"></a>表表达式与公共表表达式</h3><ul>
 <li>Table Expression<ul>
 <li>就是说会返回一个表</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">找到那些总支出大于<span class="number">200000</span>的部门们</span><br><span class="line"><span class="keyword">SELECT</span> deptno, totalpay</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> deptno, <span class="built_in">sum</span>(salay)<span class="operator">+</span><span class="built_in">sum</span>(bonus) <span class="keyword">AS</span> totalpay</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno) <span class="keyword">AS</span> payroll <span class="keyword">WHERE</span> totalpay<span class="operator">&gt;</span><span class="number">200000</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">找到那些总支出大于<span class="token number">200000</span>的部门们
+<span class="token keyword">SELECT</span> deptno<span class="token punctuation">,</span> totalpay
+<span class="token keyword">FROM</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> deptno<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>salay<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">sum</span><span class="token punctuation">(</span>bonus<span class="token punctuation">)</span> <span class="token keyword">AS</span> totalpay
+<span class="token keyword">FROM</span> emp
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> deptno<span class="token punctuation">)</span> <span class="token keyword">AS</span> payroll <span class="token keyword">WHERE</span> totalpay<span class="token operator">></span><span class="token number">200000</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
 <li>Common Table Expression<ul>
 <li>用<code>WITH</code>创建一个临时表相当于</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>找到总支出最大的部门</span><br><span class="line"><span class="keyword">WITH</span> payroll (deptno, totalpay) <span class="keyword">AS</span></span><br><span class="line">		(<span class="keyword">SELECT</span> deptno, <span class="built_in">sum</span>(salary)<span class="operator">+</span><span class="built_in">sum</span>(bonus) </span><br><span class="line">     <span class="keyword">FROM</span> emp</span><br><span class="line">  	 <span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno) </span><br><span class="line"><span class="keyword">SELECT</span> deptno</span><br><span class="line"><span class="keyword">FROM</span> payroll</span><br><span class="line"><span class="keyword">WHERE</span> totalpay <span class="operator">=</span> (<span class="keyword">SELECT</span> <span class="built_in">max</span>(totalpay)</span><br><span class="line">									<span class="keyword">FROM</span> payroll);</span><br><span class="line">									</span><br></pre></td></tr></table></figure>
-<h3 id="递归子查询"><a href="#递归子查询" class="headerlink" title="递归子查询"></a>递归子查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>找到所有上司是Hoover的员工，并且他们的薪水都高于<span class="number">100000</span></span><br><span class="line"><span class="keyword">WITH</span> agents (name, salary) <span class="keyword">AS</span></span><br><span class="line">  ((<span class="keyword">SELECT</span> name, salary     <span class="comment">--initial query</span></span><br><span class="line">		<span class="keyword">FROM</span> FedEmp</span><br><span class="line">		<span class="keyword">WHERE</span> manager<span class="operator">=</span>‘Hoover’)</span><br><span class="line">	<span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line">	 (<span class="keyword">SELECT</span> f.name, f.salary   <span class="comment">--recursive query</span></span><br><span class="line">		<span class="keyword">FROM</span> agents <span class="keyword">AS</span> a, FedEmp <span class="keyword">AS</span> f</span><br><span class="line">		<span class="keyword">WHERE</span> f.manager <span class="operator">=</span> a.name)) </span><br><span class="line"><span class="keyword">SELECT</span> name                 <span class="comment">--final query</span></span><br><span class="line"><span class="keyword">FROM</span> agents</span><br><span class="line"><span class="keyword">WHERE</span> salary<span class="operator">&gt;</span><span class="number">100000</span> ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>一个比较复杂的例子</span><br><span class="line"><span class="keyword">WITH</span> trips (destination, route, nsegs, totalcost) <span class="keyword">AS</span></span><br><span class="line">		((<span class="keyword">SELECT</span> destination, <span class="built_in">CAST</span>(destination <span class="keyword">AS</span> <span class="type">varchar</span>(<span class="number">20</span>)), <span class="number">1</span>, cost</span><br><span class="line">			<span class="keyword">FROM</span> flights              <span class="comment">--- initial query</span></span><br><span class="line">			<span class="keyword">WHERE</span> origin<span class="operator">=</span>‘SFO’) </span><br><span class="line">     <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line">			(<span class="keyword">SELECT</span> f.destination, <span class="comment">--- recursive query </span></span><br><span class="line">       <span class="built_in">CAST</span>(t.route<span class="operator">||</span>’,’<span class="operator">||</span>f.destination <span class="keyword">AS</span> <span class="type">varchar</span>(<span class="number">20</span>)),</span><br><span class="line">				t.nsegs<span class="operator">+</span><span class="number">1</span>, t.totalcost<span class="operator">+</span>f.cost</span><br><span class="line"> 			 <span class="keyword">FROM</span> trips t, flights f </span><br><span class="line">       <span class="keyword">WHERE</span> t.destination<span class="operator">=</span>f.origin</span><br><span class="line">							<span class="keyword">AND</span> f.destination<span class="operator">&lt;&gt;</span>’SFO’  <span class="comment">--- stopping rule 1</span></span><br><span class="line">       				<span class="keyword">AND</span> f.origin<span class="operator">&lt;&gt;</span>’JFK’      <span class="comment">--- stopping rule 2</span></span><br><span class="line">       				<span class="keyword">AND</span> t.nsegs<span class="operator">&lt;=</span><span class="number">3</span>))       <span class="comment">--- stopping rule 3</span></span><br><span class="line"><span class="keyword">SELECT</span> route, totalcost       <span class="comment">--- final query</span></span><br><span class="line"><span class="keyword">FROM</span> trips</span><br><span class="line"><span class="keyword">WHERE</span> destination<span class="operator">=</span>‘JFK’ <span class="keyword">AND</span> totalcost<span class="operator">=</span>   <span class="comment">--- lowest cost rule</span></span><br><span class="line"> 													（<span class="keyword">SELECT</span> <span class="built_in">min</span>(totalcost)</span><br><span class="line"> 														<span class="keyword">FROM</span> trips</span><br><span class="line"> 														<span class="keyword">WHERE</span> destination<span class="operator">=</span><span class="string">&#x27;JFK&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//找到总支出最大的部门</span>
+<span class="token keyword">WITH</span> payroll <span class="token punctuation">(</span>deptno<span class="token punctuation">,</span> totalpay<span class="token punctuation">)</span> <span class="token keyword">AS</span>
+		<span class="token punctuation">(</span><span class="token keyword">SELECT</span> deptno<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">sum</span><span class="token punctuation">(</span>bonus<span class="token punctuation">)</span> 
+     <span class="token keyword">FROM</span> emp
+  	 <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> deptno<span class="token punctuation">)</span> 
+<span class="token keyword">SELECT</span> deptno
+<span class="token keyword">FROM</span> payroll
+<span class="token keyword">WHERE</span> totalpay <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">max</span><span class="token punctuation">(</span>totalpay<span class="token punctuation">)</span>
+									<span class="token keyword">FROM</span> payroll<span class="token punctuation">)</span><span class="token punctuation">;</span>
+									<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="递归子查询"><a href="#递归子查询" class="headerlink" title="递归子查询"></a>递归子查询</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//找到所有上司是Hoover的员工，并且他们的薪水都高于100000</span>
+<span class="token keyword">WITH</span> agents <span class="token punctuation">(</span>name<span class="token punctuation">,</span> salary<span class="token punctuation">)</span> <span class="token keyword">AS</span>
+  <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> salary     <span class="token comment">--initial query</span>
+		<span class="token keyword">FROM</span> FedEmp
+		<span class="token keyword">WHERE</span> manager<span class="token operator">=</span>‘Hoover’<span class="token punctuation">)</span>
+	<span class="token keyword">UNION</span> <span class="token keyword">ALL</span>
+	 <span class="token punctuation">(</span><span class="token keyword">SELECT</span> f<span class="token punctuation">.</span>name<span class="token punctuation">,</span> f<span class="token punctuation">.</span>salary   <span class="token comment">--recursive query</span>
+		<span class="token keyword">FROM</span> agents <span class="token keyword">AS</span> a<span class="token punctuation">,</span> FedEmp <span class="token keyword">AS</span> f
+		<span class="token keyword">WHERE</span> f<span class="token punctuation">.</span>manager <span class="token operator">=</span> a<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token keyword">SELECT</span> name                 <span class="token comment">--final query</span>
+<span class="token keyword">FROM</span> agents
+<span class="token keyword">WHERE</span> salary<span class="token operator">></span><span class="token number">100000</span> <span class="token punctuation">;</span>
+
+
+<span class="token comment">//一个比较复杂的例子</span>
+<span class="token keyword">WITH</span> trips <span class="token punctuation">(</span>destination<span class="token punctuation">,</span> route<span class="token punctuation">,</span> nsegs<span class="token punctuation">,</span> totalcost<span class="token punctuation">)</span> <span class="token keyword">AS</span>
+		<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> destination<span class="token punctuation">,</span> CAST<span class="token punctuation">(</span>destination <span class="token keyword">AS</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> cost
+			<span class="token keyword">FROM</span> flights              <span class="token comment">--- initial query</span>
+			<span class="token keyword">WHERE</span> origin<span class="token operator">=</span>‘SFO’<span class="token punctuation">)</span> 
+     <span class="token keyword">UNION</span> <span class="token keyword">ALL</span>
+			<span class="token punctuation">(</span><span class="token keyword">SELECT</span> f<span class="token punctuation">.</span>destination<span class="token punctuation">,</span> <span class="token comment">--- recursive query </span>
+       CAST<span class="token punctuation">(</span>t<span class="token punctuation">.</span>route<span class="token operator">||</span>’<span class="token punctuation">,</span>’<span class="token operator">||</span>f<span class="token punctuation">.</span>destination <span class="token keyword">AS</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+				t<span class="token punctuation">.</span>nsegs<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span>totalcost<span class="token operator">+</span>f<span class="token punctuation">.</span>cost
+ 			 <span class="token keyword">FROM</span> trips t<span class="token punctuation">,</span> flights f 
+       <span class="token keyword">WHERE</span> t<span class="token punctuation">.</span>destination<span class="token operator">=</span>f<span class="token punctuation">.</span>origin
+							<span class="token operator">AND</span> f<span class="token punctuation">.</span>destination<span class="token operator">&lt;></span>’SFO’  <span class="token comment">--- stopping rule 1</span>
+       				<span class="token operator">AND</span> f<span class="token punctuation">.</span>origin<span class="token operator">&lt;></span>’JFK’      <span class="token comment">--- stopping rule 2</span>
+       				<span class="token operator">AND</span> t<span class="token punctuation">.</span>nsegs<span class="token operator">&lt;=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>       <span class="token comment">--- stopping rule 3</span>
+<span class="token keyword">SELECT</span> route<span class="token punctuation">,</span> totalcost       <span class="token comment">--- final query</span>
+<span class="token keyword">FROM</span> trips
+<span class="token keyword">WHERE</span> destination<span class="token operator">=</span>‘JFK’ <span class="token operator">AND</span> totalcost<span class="token operator">=</span>   <span class="token comment">--- lowest cost rule</span>
+ 													（<span class="token keyword">SELECT</span> <span class="token function">min</span><span class="token punctuation">(</span>totalcost<span class="token punctuation">)</span>
+ 														<span class="token keyword">FROM</span> trips
+ 														<span class="token keyword">WHERE</span> destination<span class="token operator">=</span><span class="token string">'JFK'</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="数据操纵语言-P69-71"><a href="#数据操纵语言-P69-71" class="headerlink" title="数据操纵语言 P69-71"></a>数据操纵语言 P69-71</h2><ul>
 <li><code>INSERT</code></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> EMPLOYEES <span class="keyword">VALUES</span> (<span class="string">&#x27;Smith&#x27;</span>, <span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;1980-06-10&#x27;</span>, <span class="string">&#x27;Los Angles&#x27;</span>, <span class="number">16</span>, <span class="number">45000</span>);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> EMPLOYEES <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'Smith'</span><span class="token punctuation">,</span> <span class="token string">'John'</span><span class="token punctuation">,</span> <span class="token string">'1980-06-10'</span><span class="token punctuation">,</span> <span class="token string">'Los Angles'</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">45000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <ul>
 <li><code>DELETE</code></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> Person <span class="keyword">WHERE</span> LastName <span class="operator">=</span> <span class="string">&#x27;Rasmussen&#x27;</span> ;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> Person <span class="token keyword">WHERE</span> LastName <span class="token operator">=</span> <span class="token string">'Rasmussen'</span> <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <ul>
 <li><code>UPDATE</code></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> Person <span class="keyword">SET</span> Address <span class="operator">=</span> <span class="string">&#x27;Zhongshan 23&#x27;</span>, City <span class="operator">=</span> <span class="string">&#x27;Nanjing&#x27;</span> <span class="keyword">WHERE</span> LastName <span class="operator">=</span> <span class="string">&#x27;Wilson&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">UPDATE</span> Person <span class="token keyword">SET</span> Address <span class="token operator">=</span> <span class="token string">'Zhongshan 23'</span><span class="token punctuation">,</span> City <span class="token operator">=</span> <span class="token string">'Nanjing'</span> <span class="token keyword">WHERE</span> LastName <span class="token operator">=</span> <span class="token string">'Wilson'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <h2 id="关于视图-P72-75"><a href="#关于视图-P72-75" class="headerlink" title="关于视图 P72-75"></a>关于视图 P72-75</h2><ul>
 <li><p>普通视图</p>
 </li>
@@ -440,7 +678,16 @@
 <li><p>通过宿主变量（host variables）与程序交流，在SQL语句中宿主变量前面必须加<code>:</code>；只能是一般变量，不能是数组或者其他结构</p>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>定义宿主变量</span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">BEGIN</span> <span class="keyword">DECLARE</span> SECTION; <span class="type">char</span> SNO[<span class="number">7</span>];</span><br><span class="line"><span class="type">char</span> GIVENSNO[<span class="number">7</span>];</span><br><span class="line"><span class="type">char</span> CNO[<span class="number">6</span>];</span><br><span class="line"><span class="type">char</span> GIVENCNO[<span class="number">6</span>];</span><br><span class="line"><span class="type">float</span> GRADE;</span><br><span class="line">short GRADEI; <span class="comment">/*indicator of GRADE，为负数则表示GRADE为NULL*/</span></span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">END</span> <span class="keyword">DECLARE</span> SECTION;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//定义宿主变量</span>
+<span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">BEGIN</span> <span class="token keyword">DECLARE</span> SECTION<span class="token punctuation">;</span> <span class="token keyword">char</span> SNO<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> GIVENSNO<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> CNO<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> GIVENCNO<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> GRADE<span class="token punctuation">;</span>
+short GRADEI<span class="token punctuation">;</span> <span class="token comment">/*indicator of GRADE，为负数则表示GRADE为NULL*/</span>
+<span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">END</span> <span class="token keyword">DECLARE</span> SECTION<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
 <li><p>特殊的宿主变量<code>SQLCA</code>,通常用<code>SQLCA.SQLCODE</code>来表示SQL执行结果</p>
 <blockquote>
@@ -453,15 +700,47 @@
 <li><p><code>CONNECT</code></p>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">CONNECT</span> :uid IDENTIFIED <span class="keyword">BY</span> :pwd;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">CONNECT</span> :uid IDENTIFIED <span class="token keyword">BY</span> :pwd<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <ul>
 <li>执行查询或者操作</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">INSERT</span> <span class="keyword">INTO</span> SC(SNO,CNO,GRADE)</span><br><span class="line"><span class="keyword">VALUES</span>(:SNO, :CNO, :GRADE);</span><br><span class="line"></span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">SELECT</span> GRADE</span><br><span class="line">				 <span class="keyword">INTO</span> :GRADE :GRADEI    <span class="operator">/</span><span class="operator">/</span>因为只能查到一个值，所以可以直接赋值</span><br><span class="line">				 <span class="keyword">FROM</span> SC</span><br><span class="line">				 <span class="keyword">WHERE</span> SNO<span class="operator">=</span>:GIVENSNO <span class="keyword">AND</span></span><br><span class="line">							 CNO<span class="operator">=</span>:GIVENCNO;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> SC<span class="token punctuation">(</span>SNO<span class="token punctuation">,</span>CNO<span class="token punctuation">,</span>GRADE<span class="token punctuation">)</span>
+<span class="token keyword">VALUES</span><span class="token punctuation">(</span>:SNO<span class="token punctuation">,</span> :CNO<span class="token punctuation">,</span> :GRADE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">SELECT</span> GRADE
+				 <span class="token keyword">INTO</span> :GRADE :GRADEI    <span class="token comment">//因为只能查到一个值，所以可以直接赋值</span>
+				 <span class="token keyword">FROM</span> SC
+				 <span class="token keyword">WHERE</span> SNO<span class="token operator">=</span>:GIVENSNO <span class="token operator">AND</span>
+							 CNO<span class="token operator">=</span>:GIVENCNO<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
 <li><code>CURSOR</code> 可以将多个查到的值放入数组</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> INCLUDE SQLCA    </span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">BEGIN</span> <span class="keyword">DECLARE</span> SECTION;</span><br><span class="line"><span class="type">char</span> sname[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">END</span> <span class="keyword">DECLARE</span> SECTION;</span><br><span class="line"></span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">DECLARE</span> student<span class="operator">-</span><span class="keyword">cursor</span> <span class="keyword">CURSOR</span> <span class="keyword">FOR</span>   <span class="comment">--Step1：声明游标</span></span><br><span class="line">  <span class="keyword">SELECT</span> S.sname</span><br><span class="line">  <span class="keyword">FROM</span> student S</span><br><span class="line">  <span class="keyword">WHERE</span> S.gpa<span class="operator">&gt;</span><span class="number">3.5</span></span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">OPEN</span> student<span class="operator">-</span><span class="keyword">cursor</span>;              <span class="comment">--Step2：打开游标</span></span><br><span class="line">while(<span class="literal">TRUE</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">FETCH</span> C1 <span class="keyword">INTO</span> :sname;       <span class="comment">--Step3: 读数据</span></span><br><span class="line">  if(SQLCA.SQLCODE<span class="operator">=</span><span class="operator">=</span><span class="number">100</span>) <span class="comment">--读完了</span></span><br><span class="line">    break;</span><br><span class="line">  if(SQLCA.SQLCODE<span class="operator">&lt;</span><span class="number">0</span>)    <span class="comment">--出错了</span></span><br><span class="line">    break;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  ...处理游标中所取的数据</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  printf(&quot;%s\n&quot;, sname);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">EXEC</span> <span class="keyword">SQL</span> <span class="keyword">CLOSE</span> C1;             <span class="comment">--Step4：关闭游标</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> INCLUDE SQLCA    
+<span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">BEGIN</span> <span class="token keyword">DECLARE</span> SECTION<span class="token punctuation">;</span>
+<span class="token keyword">char</span> sname<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">END</span> <span class="token keyword">DECLARE</span> SECTION<span class="token punctuation">;</span>
+
+<span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">DECLARE</span> student<span class="token operator">-</span><span class="token keyword">cursor</span> <span class="token keyword">CURSOR</span> <span class="token keyword">FOR</span>   <span class="token comment">--Step1：声明游标</span>
+  <span class="token keyword">SELECT</span> S<span class="token punctuation">.</span>sname
+  <span class="token keyword">FROM</span> student S
+  <span class="token keyword">WHERE</span> S<span class="token punctuation">.</span>gpa<span class="token operator">></span><span class="token number">3.5</span>
+<span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">OPEN</span> student<span class="token operator">-</span><span class="token keyword">cursor</span><span class="token punctuation">;</span>              <span class="token comment">--Step2：打开游标</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">TRUE</span><span class="token punctuation">)</span>
+&#123;
+  <span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">FETCH</span> C1 <span class="token keyword">INTO</span> :sname<span class="token punctuation">;</span>       <span class="token comment">--Step3: 读数据</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>SQLCA<span class="token punctuation">.</span>SQLCODE<span class="token operator">=</span><span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment">--读完了</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>SQLCA<span class="token punctuation">.</span>SQLCODE<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span>    <span class="token comment">--出错了</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token comment">/*
+  ...处理游标中所取的数据
+  */</span>
+  printf<span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> sname<span class="token punctuation">)</span><span class="token punctuation">;</span>
+&#125;<span class="token punctuation">;</span>
+<span class="token keyword">EXEC</span> <span class="token keyword">SQL</span> <span class="token keyword">CLOSE</span> C1<span class="token punctuation">;</span>             <span class="token comment">--Step4：关闭游标</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="动态SQL与存储过程-P79-82"><a href="#动态SQL与存储过程-P79-82" class="headerlink" title="动态SQL与存储过程 P79-82"></a>动态SQL与存储过程 P79-82</h2><p><del>考到了就现学</del></p>
 <h1 id="Chapter-4-数据库管理系统"><a href="#Chapter-4-数据库管理系统" class="headerlink" title="Chapter 4 数据库管理系统"></a>Chapter 4 数据库管理系统</h1><h2 id="DBMS核心的模块结构-P88-90"><a href="#DBMS核心的模块结构-P88-90" class="headerlink" title="DBMS核心的模块结构 P88-90"></a>DBMS核心的模块结构 P88-90</h2><p><img src="https://acupofair.github.io/posts/dbms/res/2021-12-05-12-41-46.png" alt="img"></p>
 <ul>
@@ -876,7 +1155,23 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Sailors(</span><br><span class="line">  sid <span class="type">INTEGER</span>,</span><br><span class="line">  sname <span class="type">CHAR</span>(<span class="number">10</span>),</span><br><span class="line">  rating <span class="type">INTEGER</span>,</span><br><span class="line">  age <span class="type">REAL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(sid),</span><br><span class="line">  <span class="keyword">CHECK</span>(rating<span class="operator">&gt;=</span><span class="number">1</span> <span class="keyword">AND</span> rating<span class="operator">&lt;=</span><span class="number">10</span>));</span><br><span class="line">  </span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Sailors (</span><br><span class="line">	sid <span class="type">INTEGER</span>,</span><br><span class="line">	sname <span class="type">CHAR</span>(<span class="number">10</span>),</span><br><span class="line">	age <span class="type">REAL</span>,</span><br><span class="line">	<span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(sid),</span><br><span class="line">	<span class="keyword">CHECK</span>(</span><br><span class="line">	(<span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(S.sid) <span class="keyword">FROM</span> Sailors S)</span><br><span class="line">	<span class="operator">+</span>(<span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(B.bid) <span class="keyword">FROM</span> Boats B)<span class="operator">&lt;</span><span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> Sailors<span class="token punctuation">(</span>
+  sid <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+  sname <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  rating <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+  age <span class="token keyword">REAL</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>sid<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">CHECK</span><span class="token punctuation">(</span>rating<span class="token operator">>=</span><span class="token number">1</span> <span class="token operator">AND</span> rating<span class="token operator">&lt;=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> Sailors <span class="token punctuation">(</span>
+	sid <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+	sname <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	age <span class="token keyword">REAL</span><span class="token punctuation">,</span>
+	<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>sid<span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token keyword">CHECK</span><span class="token punctuation">(</span>
+	<span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>S<span class="token punctuation">.</span>sid<span class="token punctuation">)</span> <span class="token keyword">FROM</span> Sailors S<span class="token punctuation">)</span>
+	<span class="token operator">+</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>B<span class="token punctuation">.</span>bid<span class="token punctuation">)</span> <span class="token keyword">FROM</span> Boats B<span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><ul>
 <li>主动数据库：能对数据库采取一些主动的动作。<ul>
 <li>数据库的主动依赖于规则<ul>
@@ -887,7 +1182,17 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>在往水手表中插入水手时，若年龄小于<span class="number">18</span>则插入年轻水手表</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> youngSailorUpdate          <span class="comment">--声明触发器</span></span><br><span class="line">AFTER <span class="keyword">INSERT</span> <span class="keyword">ON</span> SALORS                    <span class="comment">--Event</span></span><br><span class="line"><span class="keyword">REFERENCING</span> <span class="keyword">NEW</span> <span class="keyword">TABLE</span> NewSailors          <span class="comment">--对水手表新插入的元组看成一张表</span></span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> STATEMENT                        <span class="comment">--触发行为</span></span><br><span class="line"><span class="keyword">INSERT</span></span><br><span class="line">  <span class="keyword">INTO</span> YoungSailor(sid, name, age, rating)</span><br><span class="line">  <span class="keyword">SELECT</span> sid, name, age, rating</span><br><span class="line">  <span class="keyword">FROM</span> NewSailors N</span><br><span class="line">  <span class="keyword">WHERE</span> N.age <span class="operator">&lt;=</span><span class="number">18</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//在往水手表中插入水手时，若年龄小于18则插入年轻水手表</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> youngSailorUpdate          <span class="token comment">--声明触发器</span>
+<span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span> <span class="token keyword">ON</span> SALORS                    <span class="token comment">--Event</span>
+REFERENCING NEW <span class="token keyword">TABLE</span> NewSailors          <span class="token comment">--对水手表新插入的元组看成一张表</span>
+<span class="token keyword">FOR</span> EACH STATEMENT                        <span class="token comment">--触发行为</span>
+<span class="token keyword">INSERT</span>
+  <span class="token keyword">INTO</span> YoungSailor<span class="token punctuation">(</span>sid<span class="token punctuation">,</span> name<span class="token punctuation">,</span> age<span class="token punctuation">,</span> rating<span class="token punctuation">)</span>
+  <span class="token keyword">SELECT</span> sid<span class="token punctuation">,</span> name<span class="token punctuation">,</span> age<span class="token punctuation">,</span> rating
+  <span class="token keyword">FROM</span> NewSailors N
+  <span class="token keyword">WHERE</span> N<span class="token punctuation">.</span>age <span class="token operator">&lt;=</span><span class="token number">18</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
 <li><p>触发器的执行策略 </p>
 <ul>
@@ -1176,6 +1481,25 @@ window._bd_share_config={
   })
 </script>
 
+
+<script
+  type="text/javascript"
+  src="/libs/codeBlock/codeBlockFuction.js"
+></script>
+<!-- 代码语言 -->
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+<!-- 代码块复制 -->
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+<!-- 代码块收缩 -->
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+<!-- 代码块折行 -->
+<style type="text/css">
+  code[class*='language-'],
+  pre[class*='language-'] {
+    white-space: pre !important;
+  }
+</style>
 
     </main>
     <a class="not-found">not found!</a>

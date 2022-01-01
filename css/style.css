@@ -556,7 +556,7 @@ main,
   color: #333;
 }
 .footer {
-  line-height: 5;
+  line-height: 2;
   display: flex;
   justify-content: center;
   align-items: center;

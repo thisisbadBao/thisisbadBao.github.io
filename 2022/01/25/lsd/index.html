@@ -124,8 +124,8 @@
 <p> 2022-3-22<br>最近进度比较慢，主要在熟悉引擎的使用，因为没有像unity一样有一个可视化的编辑器（其实有），也没有API文档之类的，所以只能自己一步步摸索，主要方式是学习瑾哥用这个引擎开发的几个游戏例子，这几天熟悉了引擎的ECS系统，初步用下来确实写起来很方便清晰，通过一类属性把实体划分成一个个组，然后可以去监听带有指定属性的所有实体，比如可以监听所有带有“hp”属性的实体，当“hp”变化时做什么操作。昨天晚上试着用了一下引擎自带的粒子系统，实现了枪口火焰和子弹的效果，虽然效果还不是很好。<br><img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20220322173026.png" alt="iShot2022-03-22 17.15.35" style="zoom:50%;" /><img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20220322173034.png" alt="iShot2022-03-22 17.15.46" style="zoom:50%;" /></p>
 <p>然后怪物也能正常收到子弹的伤害<br><img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20220322173119.png" alt="iShot2022-03-22 17.16.59"></p>
 <p>写了一下小饕餮的一个简单AI（其实是照着一个例子改了改），主要就是通过看监测范围内有没有敌人且是否面朝自己，然后就冲过去发动攻击</p>
-<p><img src="/Users/thisisbadbao/Desktop/iShot2022-03-22 17.34.24.png" alt="iShot2022-03-22 17.34.24" style="zoom:50%;" /><img src="/Users/thisisbadbao/Desktop/iShot2022-03-22 17.34.56.png" alt="iShot2022-03-22 17.34.56" style="zoom:50%;" /></p>
-<img src="/Users/thisisbadbao/Desktop/iShot2022-03-22 17.19.16.png" alt="iShot2022-03-22 17.19.16" style="zoom:50%;" />
+<p><img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20220322174137.png" alt="iShot2022-03-22 17.34.24" style="zoom:50%;" /><img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20220322174154.png" alt="iShot2022-03-22 17.34.56" style="zoom:50%;" /></p>
+<img src="https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20220322174201.png" alt="iShot2022-03-22 17.19.16" style="zoom:50%;" />
 
 <hr>
 <p>然后今天看到一个shader的教程非常不错，叫<a target="_blank" rel="noopener" href="https://thebookofshaders.com/">The Book of Shader</a>，打算跟着上面的例子学着写写看，毕竟游戏里也需要大量美术效果需要shader写，而且这个教程用的glsl语言也正合Dorothy里用的bgfx支持的语法类似。</p>

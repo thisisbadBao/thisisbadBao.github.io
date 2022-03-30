@@ -129,6 +129,10 @@
 
 <hr>
 <p>然后今天看到一个shader的教程非常不错，叫<a target="_blank" rel="noopener" href="https://thebookofshaders.com/">The Book of Shader</a>，打算跟着上面的例子学着写写看，毕竟游戏里也需要大量美术效果需要shader写，而且这个教程用的glsl语言也正合Dorothy里用的bgfx支持的语法类似。</p>
+<p><em>gl_FragColor(Vec4)</em><br>是GLSL的一个默认输出值这个全局变量可以用来<strong>输出</strong>所有像素的颜色，用的是RGBA，我的理解就是这个东西会在<strong>每帧</strong>遍历屏幕上所有的像素点，然后将一个颜色告诉这个像素；</p>
+<p><em>uniforms</em><br>这个是一种数据类型的定义，表示一个统一的输入值，GPU的所有线程必须接收相同的数据，并且不能手动修改它，比如<code>uniform float u_time; </code>就表示时间，就是画面加载后的秒数；</p>
+<p><em>gl_FragCoord(Vec4)</em><br>是一个默认的输入值，表示屏幕上每个像素的坐标，如果想让每个像素的颜色根据坐标变换就可以将坐标规范化后传入<code>gl_FragColor</code>里就可以了；（这里的规范化就是x/width,y/height，把所有坐标映射到0-1之间，因为颜色通道的取值在0.0到1.0之间）</p>
+<p><em>smoothstep(a,b,x)</em><br>x小于a时返回0，大于b时返回1，的是step函数的升级版，原本step以一个值作为分界，而smoothstep用两个值作为分界，然后这两个值之间作平滑过渡。</p>
 </div>
             
            
